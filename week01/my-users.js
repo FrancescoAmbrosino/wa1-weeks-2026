@@ -16,17 +16,36 @@ Develop a small JS program to manage the list of users in a website.
   - Extra: in alphabetical order of acronym.
 */
 
+// split the string into the indivudual names
 const names = "Luigi De Russis, Francesca Russo, Fulvio Corno, Luca Scibetta, Alberto Monge Roffarello" ;
 const list_names = names.split(',')
-// for (let i=0; i<list_names.length; i++) {
-//   list_names[i] = list_names[i].trim()
-// }
 
+// remove extra spaces from beginning/end of each name
 const list_2 = []
 for( const name of list_names )
   list_2.push(name.trim())
 
+// create a list with acronyms
+const acronyms = []
+for(const name of list_2) {
+  let components = name.split(' ') // an array with each component of the name
+  // Example: ['Luigi', 'De', 'Russis']
 
+  let first_letters = ""
+  for (const each of components)
+    first_letters += each[0]
 
+  first_letters = first_letters.toUpperCase() // convert to uppercase, just to be sure
+  acronyms.push(first_letters)
+}
 
-console.log(names)
+// console.log(acronyms)   // example: ['LDR', 'FR', 'FC', 'LS', 'AMR']
+
+// sort by alpha order of acronym
+acronyms.sort()
+
+// finally, join the acronyms together as a string
+
+const output = acronyms.join(', ')
+
+console.log(output)
